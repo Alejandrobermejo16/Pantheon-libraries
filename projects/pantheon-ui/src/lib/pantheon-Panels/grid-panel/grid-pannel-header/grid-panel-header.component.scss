@@ -1,0 +1,18 @@
+.header-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  background: #0645f1;
+  padding: 12px;
+  border-radius: 10px 10px 0 0;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  gap: 10px;
+}
+
+.header-column {
+  padding: 8px 0;
+  background: #0789f3;
+  border-radius: 6px;
+  color: rgb(255, 255, 255);
+}
