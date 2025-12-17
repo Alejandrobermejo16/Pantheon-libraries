@@ -1,6 +1,22 @@
 <div class="grid-panel-container">
     <div class="grid-panel" [ngStyle]="{'grid-template-columns': gridTemplateColumns}">
-        <pantehon-card></pantehon-card>
-        <ng-content></ng-content>
+        <div class="grid-column" 
+             *ngFor="let column of columns; let columnIndex = index"
+             cdkDropList
+             [id]="'column-' + columnIndex"
+             [cdkDropListData]="column.tasks"
+             cdkDropListSortingDisabled
+             [cdkDropListConnectedTo]="connectedDropLists"
+             (cdkDropListDropped)="onTaskDrop($event, columnIndex)">
+            <div class="column-content">
+                <pantehon-card *ngFor="let task of column.tasks; let taskIndex = index" class="task-card"
+                [isCompleted]="crossOutEnabled && columnIndex === 3" cdkDrag
+                [title]="task?.title"
+                [description]="task?.description"
+                [createdAt]="task?.createdAt">
+                </pantehon-card>
+            </div>
+
+        </div>
     </div>
 </div>

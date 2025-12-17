@@ -1,0 +1,12 @@
+<div class="container-card">
+  <div class="card" [ngClass]="[cardClass, isCompleted ? 'is-completed' : '']">
+    <div class="date-container">
+      <mat-icon>calendar_today</mat-icon>
+      {{ createdAt }}
+    </div>
+    <h3>{{ title }}</h3>
+    <p>{{ description }}</p>
+    <div class="card-footer"></div>
+    <ng-content></ng-content>
+  </div>
+</div>
