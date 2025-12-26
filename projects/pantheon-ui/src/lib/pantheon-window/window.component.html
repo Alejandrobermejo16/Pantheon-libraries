@@ -1,0 +1,15 @@
+<div class="modal-backdrop" *ngIf="show" (click)="close()"></div>
+
+<div *ngIf="show" class="container-window" [ngClass]="['size-' + size, 'variant-' + variant]">
+  <div class="window-header">
+    <mat-icon class="window-icon">{{ icon }}</mat-icon><ng-content select="[title]"></ng-content>
+  </div>
+  <div class="window-body"><ng-content select="[body]"></ng-content>
+  </div>
+  <div class="window-footer">
+    <button mat-button class="btn-close" (click)="close()">{{ titleBtnClose }}</button>
+    <button *ngIf="titleBtnNext && titleBtnNext.trim() !== ''" mat-button class="btn-next" (click)="onAction()">
+      {{ titleBtnNext }}
+    </button>
+  </div>
+</div>

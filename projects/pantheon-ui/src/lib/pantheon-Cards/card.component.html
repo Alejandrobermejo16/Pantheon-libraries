@@ -6,7 +6,9 @@
     </div>
     <h3>{{ title }}</h3>
     <p>{{ description }}</p>
-    <div class="card-footer"></div>
-    <ng-content></ng-content>
+    <div class="card-footer">
+      <ng-content select="[footer]"></ng-content>
+    </div>
+    <ng-content select="[extra]"></ng-content>
   </div>
 </div>

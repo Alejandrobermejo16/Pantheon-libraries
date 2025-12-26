@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { formatDateToString } from '../../../../core/utils/utils';
 
 @Component({
   selector: 'pantehon-card',
@@ -7,17 +6,19 @@ import { formatDateToString } from '../../../../core/utils/utils';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent {
-  
-  @Input() cardClass = '';
+  @Input() data!: any;
   @Input() isCompleted = false;
-  @Input() title = '';
-  @Input() description = '';
-  @Input() createdAt = '';
+  @Input() cardClass = '';
 
-  ngOnInit() {
-    if (this.createdAt) {
-      this.createdAt = formatDateToString(new Date(this.createdAt));
-    }
+  get title(): string {
+    return this.data?.title || '';
   }
-  
+
+  get description(): string {
+    return this.data?.description || '';
+  }
+
+  get createdAt(): string {
+    return this.data?.createdAt || '';
+  }
 }

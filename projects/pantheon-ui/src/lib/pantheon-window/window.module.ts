@@ -1,20 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CardComponent } from './card.component';
-import { WindowModule } from '../pantheon-window/window.module'; 
+import { WindowComponent } from './window.component';
 import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
-    CardComponent,
+    WindowComponent,
   ],
   imports: [
     CommonModule,
-    MatIconModule,
-    WindowModule
+    MatIconModule
   ],
   exports: [
-    CardComponent,
+    WindowComponent,
   ]
 })
-export class CardModule { }
+export class WindowModule { }

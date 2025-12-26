@@ -12,7 +12,7 @@
   },
   "include": [
     "src/**/*.ts"
-  ],
+, "src/lib/pantheon-window/constants.ts"  ],
   "exclude": [
     "**/*.spec.ts"
   ]

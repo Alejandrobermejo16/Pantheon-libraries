@@ -8,8 +8,21 @@
 </head>
 
 <body>
-    <pantehon-grid-panel-header></pantehon-grid-panel-header>
-    <pantehon-grid-panel></pantehon-grid-panel>
+    <pantehon-grid-panel-header [columns]="columns"></pantehon-grid-panel-header>
+    <pantehon-grid-panel [dataColumns]="dataColumns" [gridTemplateColumns]="'repeat(dataColumns.length, 1fr)'" [itemTemplate]="cardTpl">
+    </pantehon-grid-panel>
+
+    <ng-template #cardTpl let-item let-columnIndex="columnIndex">
+        <pantehon-card [data]="item" [isCompleted]="columnIndex === 3" (click)="openCard(item)"></pantehon-card>
+    </ng-template>
+
+
+    <pantehon-window [(show)]="showModal" [titleBtnClose]="'Cerrar'" [variant]="'info'" [size]="'sm'" [titleBtnNext]="'Siguiente'">
+        <div title>Título de la ventana</div>
+        <div body>Contenido de la ventana</div>
+    </pantehon-window>
+
+
 </body>
 
 </html>

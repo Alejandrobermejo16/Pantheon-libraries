@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 export class GridPanelHeaderComponent {
 
   
-  columns: Array<String> = ['Ready To Start', 'In Progress', 'Ready to verify/Deploy', 'Deployed'];
-  gridTemplateColumns: string = 'repeat(4, 1fr)';
+  @Input() columns: Array<String> = [];
+  gridTemplateColumns: string = `repeat(${this.columns.length}, 1fr)`;
 
 }

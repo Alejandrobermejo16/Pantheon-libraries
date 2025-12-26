@@ -3,6 +3,7 @@ import { Directive, OnInit } from '@angular/core';
 @Directive()
 export abstract class PantheonBaseComponent implements OnInit {
 
+
   protected async initCall(
     endpoint: string,
     body?: any,
@@ -40,8 +41,7 @@ export abstract class PantheonBaseComponent implements OnInit {
 
     this.initCall(this.getResource(), defaultBody)
       .then(data => {
-        console.log('Datos recibidos automáticamente:', data);
-        this.onDataLoaded?.(data);
+        this.dataAfterRequest?.(data);
       })
       .catch(err => console.error('Error en initCall:', err));
   }
@@ -54,5 +54,5 @@ export abstract class PantheonBaseComponent implements OnInit {
   protected getUrl(): string { return 'https://backendabmprojects.vercel.app'; }
   protected getRequestMethod(): string { return 'GET'; }
   protected getDefaultBody?(): any;
-  protected onDataLoaded?(data: any): void;
+  protected dataAfterRequest?(data: any): void;
 }

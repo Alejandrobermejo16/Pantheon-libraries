@@ -5,7 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GridPanelModule } from '../../../pantheon-ui/src/lib/pantheon-Panels/grid-panel/grid-panel.module';
 import { CardModule } from '../../../pantheon-ui/src/lib/pantheon-Cards/card.module';
-import { GridPanelHeaderComponent } from '../../../pantheon-ui/src/lib/pantheon-Panels/grid-panel/grid-pannel-header/grid-panel-header.component';
+import { WindowModule } from 'projects/pantheon-ui/src/lib/pantheon-window/window.module';
+import { GridPanelHeaderModule } from '../../../pantheon-ui/src/lib/pantheon-Panels/grid-panel/grid-pannel-header/grid-panel-header.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { GridPanelHeaderComponent } from '../../../pantheon-ui/src/lib/pantheon-
     AppRoutingModule,
     GridPanelModule,
     CardModule,
-    GridPanelHeaderComponent
+    WindowModule,
+    GridPanelHeaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
