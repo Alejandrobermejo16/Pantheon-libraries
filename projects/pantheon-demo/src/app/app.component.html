@@ -9,7 +9,7 @@
 
 <body>
     <pantehon-grid-panel-header [columns]="columns"></pantehon-grid-panel-header>
-    <pantehon-grid-panel [dataColumns]="dataColumns" [gridTemplateColumns]="'repeat(dataColumns.length, 1fr)'" [itemTemplate]="cardTpl">
+    <pantehon-grid-panel [dataColumns]="dataColumns" [gridTemplateColumns]="'repeat(dataColumns.length, 1fr)'" [itemTemplate]="cardTpl" (taskMoved)="onTaskMoved($event)">
     </pantehon-grid-panel>
 
     <ng-template #cardTpl let-item let-columnIndex="columnIndex">

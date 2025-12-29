@@ -8,9 +8,11 @@ export interface TaskInterface {
   createdAt?: string;
 }
 
-export const STATUS_MAP: Record<TaskInterface['status'], string> = {
+export const STATUS_MAP: Record<string, string> = {
   'ready to start': 'Ready To Start',
   'in progress': 'In Progress',
-  'ready to verify': 'Ready to verify/Deploy',
-  'deployed': 'Deployed'
+  'ready to verify/deploy': 'Ready to verify/Deploy',
+  'deployed': 'Deployed',
+  'pendiente': 'Ready To Start'
 };
+

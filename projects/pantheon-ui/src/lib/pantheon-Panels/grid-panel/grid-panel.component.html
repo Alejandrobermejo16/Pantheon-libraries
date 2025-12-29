@@ -7,11 +7,11 @@
        (cdkDropListDropped)="onTaskDrop($event, columnIndex)">
     
     <div class="column-content">
-      <ng-container *ngFor="let item of column.items">
+      <div *ngFor="let item of column.items" cdkDrag>
         <ng-container
           *ngTemplateOutlet="itemTemplate; context: { $implicit: item, columnIndex: columnIndex }">
         </ng-container>
-      </ng-container>
+      </div>
     </div>
   </div>
 </div>

@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { PantheonBaseComponent } from 'projects/core/service/api-base/base.component';
+import { PantheonBaseComponent } from 'projects/core/api-base/base.component';
 import { WindowComponent } from '../../../pantheon-ui/src/lib/pantheon-window/window.component';
 import { STATUS_MAP, TaskInterface } from './shared/constants';
+import { PantheonRestService } from 'projects/core/service/pantheon-rest.service';
 
 @Component({
   selector: 'app-root',
@@ -16,31 +17,52 @@ export class AppComponent extends PantheonBaseComponent {
   columns: Array<String> = ['Ready To Start', 'In Progress', 'Ready to verify/Deploy', 'Deployed'];
   dataColumns: Array<{ name: string; items: TaskInterface[] }> = [];
 
+
+  constructor(private restRequestService: PantheonRestService) {
+    super();
+  }
+
   public ngOnInit(): void {
     super.ngOnInit();
   }
 
   protected dataAfterRequest(data: any): void {
-    if (!data?.tasks) return;
+  if (!data?.tasks) return;
 
-    const columnsMap: Record<string, TaskInterface[]> = {
-      'Ready To Start': [],
-      'In Progress': [],
-      'Ready to verify/Deploy': [],
-      'Deployed': []
-    };
+  const columnsMap: Record<string, TaskInterface[]> = {
+    'Ready To Start': [],
+    'In Progress': [],
+    'Ready to verify/Deploy': [],
+    'Deployed': []
+  };
 
-    data.tasks.forEach((task: TaskInterface) => {
-      const columnName = STATUS_MAP[task.status];
-      if (columnName) {
-        columnsMap[columnName].push(task);
-      }
+  data.tasks.forEach((task: TaskInterface) => {
+    const statusKey = task.status?.toLowerCase(); 
+    const columnName = STATUS_MAP[statusKey];
+    console.log('Mapping task status', task.status, 'to column', columnName);
+
+    if (columnName) {
+      columnsMap[columnName].push(task);
+    }
+  });
+
+  this.dataColumns = Object.keys(columnsMap).map(key => ({
+    name: key,
+    items: columnsMap[key]
+  }));
+}
+
+
+  protected onTaskMoved(event: { task: any, fromIndex: number, toIndex: number }) {
+    console.log('Task moved:', event);
+    this.restRequestService.patch('updateTaskStatus', {
+      taskId: event.task._id,
+      status: this.columns[event.toIndex]
+    }).then(response => {
+      console.log('Task status updated successfully:', response);
+    }).catch(error => {
+      console.error('Error updating task status:', error);
     });
-
-    this.dataColumns = Object.keys(columnsMap).map(key => ({
-      name: key,
-      items: columnsMap[key]
-    }));
   }
 
 

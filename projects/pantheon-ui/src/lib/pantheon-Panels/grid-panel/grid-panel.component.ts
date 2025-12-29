@@ -1,36 +1,32 @@
-import { Component, Input, QueryList, ViewChildren, AfterViewInit, TemplateRef } from '@angular/core';
-import { CdkDragDrop, moveItemInArray, transferArrayItem, CdkDropList } from '@angular/cdk/drag-drop';
+import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'pantehon-grid-panel',
   templateUrl: './grid-panel.component.html',
   styleUrls: ['./grid-panel.component.scss']
 })
-export class GridPanelComponent implements AfterViewInit {
-
-  @ViewChildren(CdkDropList) dropLists!: QueryList<CdkDropList>;
+export class GridPanelComponent {
 
   @Input() dataColumns: Array<{ name: string; items: any[] }> = [];
   @Input() gridTemplateColumns = 'repeat(4, 1fr)';
   @Input() itemTemplate!: TemplateRef<any>;
+  @Output() taskMoved = new EventEmitter<{ task: any; fromIndex: number; toIndex: number }>();
 
-  connectedDropLists: string[] = [];
   crossOutEnabled = false;
 
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.connectedDropLists = this.dropLists.map(list => list.id);
-    });
+  get connectedDropLists(): string[] {
+    return this.dataColumns.map((_, index) => `column-${index}`);
   }
 
   onTaskDrop(event: CdkDragDrop<any[]>, targetColumnIndex: number) {
-    if (event.container.id === 'column-3' || event.previousContainer.id === 'column-3') {
-      this.crossOutEnabled = true;
-    }
+    let movedTask;
 
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      movedTask = event.container.data[event.currentIndex];
     } else {
+      movedTask = event.previousContainer.data[event.previousIndex];
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
@@ -38,5 +34,14 @@ export class GridPanelComponent implements AfterViewInit {
         event.currentIndex
       );
     }
+
+    this.dataColumns = [...this.dataColumns];
+
+    this.taskMoved.emit({
+      task: movedTask,
+      fromIndex: Number(event.previousContainer.id.split('-')[1]),
+      toIndex: targetColumnIndex
+    });
   }
+
 }

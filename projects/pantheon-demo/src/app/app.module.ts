@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GridPanelModule } from '../../../pantheon-ui/src/lib/pantheon-Panels/grid-panel/grid-panel.module';
@@ -18,7 +18,8 @@ import { GridPanelHeaderModule } from '../../../pantheon-ui/src/lib/pantheon-Pan
     GridPanelModule,
     CardModule,
     WindowModule,
-    GridPanelHeaderModule
+    GridPanelHeaderModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

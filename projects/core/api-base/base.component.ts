@@ -24,7 +24,6 @@ export abstract class PantheonBaseComponent implements OnInit {
     const response = await fetch(fullUrl, {
       method: finalMethod,
       headers: { 'Content-Type': 'application/json' },
-      // solo incluir body en métodos distintos a GET
       body: finalMethod !== 'GET' && body ? JSON.stringify(body) : undefined,
       credentials: 'include' // si necesitas cookies o autenticación
     });
