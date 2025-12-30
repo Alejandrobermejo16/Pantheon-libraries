@@ -16,3 +16,30 @@
   border-radius: 6px;
   color: rgb(255, 255, 255);
 }
+
+.menus {
+  position: absolute;
+  top: 21px;
+  left: 28px;
+  z-index: 10;
+}
+
+.menu-button {
+  width: 40px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  background-color: #7297ff;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.menu-button:hover {
+  box-shadow: 0 4px 12px rgba(6, 69, 241, 0.3);
+  transform: translateY(-2px);
+}
