@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { PantheonBaseComponent } from 'projects/core/api-base/base.component';
-import { WindowComponent } from '../../../pantheon-ui/src/lib/pantheon-window/window.component';
+import { WindowComponent } from '../../../pantheon-ui/src/lib/pantheon-windows/window/window.component';
 import { STATUS_MAP, TaskInterface } from './shared/constants';
 import { PantheonRestService } from 'projects/core/service/pantheon-rest.service';
+import { Action } from '../../../pantheon-ui/src/lib/pantheon-windows/SideActionPanel/interface';
 
 @Component({
   selector: 'app-root',
@@ -16,8 +17,12 @@ export class AppComponent extends PantheonBaseComponent {
   showModal = false;
   columns: Array<String> = ['Ready To Start', 'In Progress', 'Ready to verify/Deploy', 'Deployed'];
   dataColumns: Array<{ name: string; items: TaskInterface[] }> = [];
-
-
+  isMenuOpen = false;
+  fieldActions: Action[] = [
+      { label: 'Añadir tarea', icon: '➕', type: 'primary', callback: () => console.log('Crear acción')  },
+      { label: 'Editar', icon: '✏️', type: 'default', callback: () => console.log('Editar acción') },
+      { label: 'Eliminar', icon: '🗑', type: 'danger', callback: () => console.log('Eliminar acción') }
+  ];
   constructor(private restRequestService: PantheonRestService) {
     super();
   }
@@ -63,6 +68,11 @@ export class AppComponent extends PantheonBaseComponent {
     }).catch(error => {
       console.error('Error updating task status:', error);
     });
+  }
+
+  protected onExtraMenuClick(event: any): void {
+    console.log('Extra menu clicked:', event);
+    // Aquí puedes manejar la acción del menú extra
   }
 
 

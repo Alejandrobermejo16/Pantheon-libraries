@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -21,5 +21,7 @@ export class GridPanelHeaderComponent {
    * Ejemplos válidos: 'menu', 'more_vert', 'add', 'account_circle', etc.
    */
   gridTemplateColumns: string = `repeat(${this.columns.length}, 1fr)`;
+  @Output() extraMenuClick = new EventEmitter<MouseEvent>();
+
 
 }

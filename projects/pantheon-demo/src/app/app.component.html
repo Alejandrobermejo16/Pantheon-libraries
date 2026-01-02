@@ -1,3 +1,5 @@
+<html>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -8,8 +10,11 @@
 </head>
 
 <body>
-    <pantehon-grid-panel-header [columns]="columns" [menuAux]="true"></pantehon-grid-panel-header>
-    <pantehon-grid-panel [dataColumns]="dataColumns" [gridTemplateColumns]="'repeat(dataColumns.length, 1fr)'" [itemTemplate]="cardTpl" (taskMoved)="onTaskMoved($event)">
+    <pantehon-grid-panel-header [columns]="columns" [menuAux]="true" [iconMenu]="'menu'"
+        (extraMenuClick)="isMenuOpen = !isMenuOpen">
+    </pantehon-grid-panel-header>
+    <pantehon-grid-panel [dataColumns]="dataColumns" [gridTemplateColumns]="'repeat(dataColumns.length, 1fr)'"
+        [itemTemplate]="cardTpl" (taskMoved)="onTaskMoved($event)">
     </pantehon-grid-panel>
 
     <ng-template #cardTpl let-item let-columnIndex="columnIndex">
@@ -17,10 +22,15 @@
     </ng-template>
 
 
-    <pantehon-window [(show)]="showModal" [titleBtnClose]="'Cerrar'" [variant]="'info'" [size]="'sm'" [titleBtnNext]="'Siguiente'">
+    <pantehon-window [(show)]="showModal" [titleBtnClose]="'Cerrar'" [variant]="'info'" [size]="'sm'"
+        [titleBtnNext]="'Siguiente'">
         <div title>Título de la ventana</div>
         <div body>Contenido de la ventana</div>
     </pantehon-window>
+
+    <pantheon-side-action-panel [open]="isMenuOpen" (close)="isMenuOpen = false" [actions]=fieldActions>
+
+    </pantheon-side-action-panel>
 
 
 </body>

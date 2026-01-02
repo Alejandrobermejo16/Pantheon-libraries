@@ -1,6 +1,7 @@
 <div class="header-container">
   <div class="menus">
-    <button *ngIf="menuAux" class="menu-button">
+    <button *ngIf="menuAux" class="menu-button" (click)="extraMenuClick.emit($event)"
+>
       <span class="material-icons">{{ iconMenu }}</span>
     </button>
   </div>
