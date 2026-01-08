@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
 import { PantheonBaseComponent } from 'projects/core/api-base/base.component';
 import { WindowComponent } from '../../../pantheon-ui/src/lib/pantheon-windows/window/window.component';
 import { STATUS_MAP, TaskInterface } from './shared/constants';
@@ -8,7 +8,8 @@ import { Action } from '../../../pantheon-ui/src/lib/pantheon-windows/SideAction
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent extends PantheonBaseComponent {
   @ViewChild('modal') modal!: WindowComponent;
@@ -19,10 +20,13 @@ export class AppComponent extends PantheonBaseComponent {
   dataColumns: Array<{ name: string; items: TaskInterface[] }> = [];
   isMenuOpen = false;
   fieldActions: Action[] = [
-      { label: 'Añadir tarea', icon: '➕', type: 'primary', callback: () => console.log('Crear acción')  },
+      { label: 'Añadir tarea', icon: '➕', type: 'primary', callback: () => this.openCreateModal() },
       { label: 'Editar', icon: '✏️', type: 'default', callback: () => console.log('Editar acción') },
       { label: 'Eliminar', icon: '🗑', type: 'danger', callback: () => console.log('Eliminar acción') }
   ];
+  protected createTaskWindow = false;
+  public taskTitle = '';
+  public taskDescription = '';
   constructor(private restRequestService: PantheonRestService) {
     super();
   }
@@ -44,8 +48,6 @@ export class AppComponent extends PantheonBaseComponent {
   data.tasks.forEach((task: TaskInterface) => {
     const statusKey = task.status?.toLowerCase(); 
     const columnName = STATUS_MAP[statusKey];
-    console.log('Mapping task status', task.status, 'to column', columnName);
-
     if (columnName) {
       columnsMap[columnName].push(task);
     }
@@ -70,15 +72,42 @@ export class AppComponent extends PantheonBaseComponent {
     });
   }
 
-  protected onExtraMenuClick(event: any): void {
-    console.log('Extra menu clicked:', event);
-    // Aquí puedes manejar la acción del menú extra
+  private openCreateModal() {
+    this.isMenuOpen = false;
+    this.createTaskWindow = true;
+  }
+
+  handleCreateTask = async () => {
+    await this.createNewTask();
+  }
+
+  protected async createNewTask(){
+    try {
+      const newTask = await this.restRequestService.post('createTasks', {
+        title: this.taskTitle,
+        description: this.taskDescription,
+        userEmail: 'alejandro@gmail.com',
+        status: 'Ready To Start'
+      });
+      console.log('Task created:', newTask);
+      this.createTaskWindow = false;
+    } catch (error) {
+      console.error('Error creating task:', error);
+      this.createTaskWindow = false;
+    }
   }
 
 
   protected openCard(item: TaskInterface): void {
     this.showModal = true;
   }
+
+  public clearInput(field: keyof AppComponent): void {
+    if (typeof this[field] === 'string') {
+      (this[field] as string) = '';
+    }
+  }
+
 
   protected getModule(): string {
     return 'getTasks';

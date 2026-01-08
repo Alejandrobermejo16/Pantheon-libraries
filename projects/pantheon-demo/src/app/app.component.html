@@ -22,10 +22,28 @@
     </ng-template>
 
 
-    <pantehon-window [(show)]="showModal" [titleBtnClose]="'Cerrar'" [variant]="'info'" [size]="'sm'"
+    <pantehon-window id="info-modal"[(show)]="showModal" [titleBtnClose]="'Cerrar'" [variant]="'info'" [size]="'sm'"
         [titleBtnNext]="'Siguiente'">
         <div title>Título de la ventana</div>
         <div body>Contenido de la ventana</div>
+    </pantehon-window>
+
+     <pantehon-window id="create-tasks-modal"[(show)]="createTaskWindow" [titleBtnClose]="'Cerrar'" [variant]="'info'" [size]="'sm'"
+        [titleBtnNext]="'Crear'" [onAction]="handleCreateTask">
+        <div title>CREACION TAREAS</div>
+        <div body>
+            <mat-form-field appearance="fill" class="pantheon-math-field">
+                <mat-label>Título</mat-label>
+                <input [(ngModel)]="taskTitle" matInput placeholder="Introduce el título de la tarea">
+                <mat-icon (click)="clearInput('taskTitle')" matSuffix>clear</mat-icon>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="pantheon-math-field">
+                <mat-label>Descripción</mat-label>
+                <input [(ngModel)]="taskDescription" matInput placeholder="Introduce la descripción de la tarea">
+                <mat-icon (click)="clearInput('taskDescription')" matSuffix>clear</mat-icon>
+            </mat-form-field>
+        </div>
     </pantehon-window>
 
     <pantheon-side-action-panel [open]="isMenuOpen" (close)="isMenuOpen = false" [actions]=fieldActions>

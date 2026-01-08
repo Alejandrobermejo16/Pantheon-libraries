@@ -16,9 +16,7 @@ export class SideActionPanelComponent {
     const rect = button.getBoundingClientRect();
     const startX = rect.left + rect.width / 2;
     const startY = rect.top + rect.height / 2;
-    
-    console.log('🌟 Creating stars at', { startX, startY });
-    
+        
     for (let i = 0; i < 6; i++) {
       const star = document.createElement('div');
       star.style.position = 'fixed';
@@ -36,7 +34,6 @@ export class SideActionPanelComponent {
       const offsetY = Math.random() * 100 - 50;
       
       document.body.appendChild(star);
-      console.log('⭐ Star added to body at', { startX, startY });
       
       // Animar con requestAnimationFrame para mejor visibilidad
       let elapsed = 0;

@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+.pantheon-math-field {
+    width: 100%;
+    background-color: lightgrey;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.pantheon-math-field .mat-mdc-form-field-subscript-wrapper {
+    display: none !important;
+}
+
+.pantheon-math-field .mat-mdc-text-field-wrapper {
+    margin-top: 6px !important;
+}
