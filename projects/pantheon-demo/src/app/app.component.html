@@ -7,12 +7,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 
 <body>
     <pantehon-grid-panel-header [columns]="columns" [menuAux]="true" [iconMenu]="'menu'"
         (extraMenuClick)="isMenuOpen = !isMenuOpen">
     </pantehon-grid-panel-header>
+                    <div id="googleSignInButton"></div>
+
     <pantehon-grid-panel [dataColumns]="dataColumns" [gridTemplateColumns]="'repeat(dataColumns.length, 1fr)'"
         [itemTemplate]="cardTpl" (taskMoved)="onTaskMoved($event)">
     </pantehon-grid-panel>
@@ -47,10 +50,9 @@
     </pantehon-window>
 
     <pantheon-side-action-panel [open]="isMenuOpen" (close)="isMenuOpen = false" [actions]=fieldActions>
-
     </pantheon-side-action-panel>
 
-
+    
 </body>
 
 </html>
