@@ -1,6 +1,6 @@
 {
-  "name": "@pantheon/pantheon-ui",
-  "version": "0.1.0",
+  "name": "pantheon-libraries",
+  "version": "0.2.0",
   "main": "dist/pantheon-ui/pantheon-ui.js",
   "types": "dist/pantheon-ui/pantheon-ui.d.ts",
   "files": [
