@@ -28,7 +28,21 @@
     "test": "ng test"
   },
   "private": false,
-  "dependencies": {
+  "peerDependencies": {
+    "@angular/animations": "^18.0.0",
+    "@angular/cdk": "^18.0.0",
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0",
+    "@angular/forms": "^18.0.0",
+    "@angular/material": "^18.0.0",
+    "@angular/platform-browser": "^18.0.0",
+    "@angular/router": "^18.0.0",
+    "rxjs": "^7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "^0.14.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
     "@angular/animations": "^18.2.14",
     "@angular/cdk": "^18.2.14",
     "@angular/common": "^18.2.14",
@@ -41,9 +55,7 @@
     "@angular/router": "^18.2.14",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "^0.14.10"
-  },
-  "devDependencies": {
+    "zone.js": "^0.14.10",
     "@angular-devkit/build-angular": "^18.2.21",
     "@angular/cli": "^18.2.21",
     "@angular/compiler-cli": "^18.2.14",
