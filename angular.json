@@ -10,7 +10,10 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular/build:ng-packagr",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/core/ng-package.json"
+          },
           "configurations": {
             "production": {
               "tsConfig": "projects/core/tsconfig.lib.prod.json"
@@ -30,7 +33,10 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular/build:ng-packagr",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/pantheon-ui/ng-package.json"
+          },
           "configurations": {
             "production": {
               "tsConfig": "projects/pantheon-ui/tsconfig.lib.prod.json"
