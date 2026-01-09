@@ -1,16 +1,20 @@
 {
   "name": "pantheon-libraries",
   "version": "0.4.1",
-  "main": "dist/pantheon-ui/index.js",
+  "main": "dist/pantheon-ui/fesm2022/pantheon-ui.mjs",
   "types": "dist/pantheon-ui/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/pantheon-ui/index.d.ts",
-      "default": "./dist/pantheon-ui/index.js"
+      "esm2022": "./dist/pantheon-ui/esm2022/pantheon-ui.mjs",
+      "es2022": "./dist/pantheon-ui/fesm2022/pantheon-ui.mjs",
+      "default": "./dist/pantheon-ui/fesm2022/pantheon-ui.mjs"
     },
     "./core": {
       "types": "./dist/pantheon-core/index.d.ts",
-      "default": "./dist/pantheon-core/index.js"
+      "esm2022": "./dist/pantheon-core/esm2022/pantheon-core.mjs",
+      "es2022": "./dist/pantheon-core/fesm2022/pantheon-core.mjs",
+      "default": "./dist/pantheon-core/fesm2022/pantheon-core.mjs"
     }
   },
   "files": [
