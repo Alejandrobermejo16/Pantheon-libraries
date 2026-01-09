@@ -1,6 +1,6 @@
 {
   "name": "pantheon-libraries",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "dist/pantheon-ui/index.js",
   "types": "dist/pantheon-ui/index.d.ts",
   "exports": {
@@ -37,7 +37,6 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.2.16",
-    "@angular/build": "^21.0.1",
     "@angular/cli": "^16.2.16",
     "@angular/compiler-cli": "^16.2.0",
     "@types/jasmine": "~4.3.0",
