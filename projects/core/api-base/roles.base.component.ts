@@ -1,18 +1,8 @@
-import { Component } from '@angular/core';
+import { Directive } from '@angular/core';
 import { PantheonBaseComponent } from './base.component';
 
-@Component({
-    selector: 'app-roles-base',
-    templateUrl: './roles.base.component.html',
-    styleUrls: ['./roles.base.component.css']
-})
-export class RolesBaseComponent extends PantheonBaseComponent {
-    constructor() {
-        super();
-    }
-
-    
-
+@Directive()
+export abstract class RolesBaseComponent extends PantheonBaseComponent {
     protected getModule(): string {
         return 'roles';
     }

@@ -1,9 +1,9 @@
 {
-  "name": "pantheon-ui",
+  "name": "@pantheon/core",
   "version": "0.3.0",
   "peerDependencies": {
-    "@angular/common": "^21.0.0",
-    "@angular/core": "^21.0.0"
+    "@angular/common": "^16.0.0",
+    "@angular/core": "^16.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

@@ -1,12 +1,16 @@
 {
   "name": "pantheon-libraries",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "main": "dist/pantheon-ui/index.js",
   "types": "dist/pantheon-ui/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/pantheon-ui/index.d.ts",
       "default": "./dist/pantheon-ui/index.js"
+    },
+    "./core": {
+      "types": "./dist/pantheon-core/index.d.ts",
+      "default": "./dist/pantheon-core/index.js"
     }
   },
   "files": [
@@ -15,7 +19,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build pantheon-ui && ng build pantheon-core",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

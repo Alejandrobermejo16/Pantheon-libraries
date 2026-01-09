@@ -3,6 +3,26 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "pantheon-core": {
+      "projectType": "library",
+      "root": "projects/core",
+      "sourceRoot": "projects/core",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/core/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/core/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        }
+      }
+    },
     "pantheon-ui": {
       "projectType": "library",
       "root": "projects/pantheon-ui",
