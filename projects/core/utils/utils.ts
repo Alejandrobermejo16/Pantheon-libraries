@@ -8,3 +8,9 @@ export const formatDateToString = (date: Date, format: string = 'MM/dd', locale:
   return formatDate(date, format, locale);
 };
 
+export const formatDateMonthYear = (date: Date): string => {
+  return formatDateToString(date, 'MMMM yyyy');
+}
+
+
+
