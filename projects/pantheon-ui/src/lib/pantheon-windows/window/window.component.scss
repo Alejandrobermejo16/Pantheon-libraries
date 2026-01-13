@@ -44,19 +44,23 @@
   }
 
   &.variant-default {
-    background: #e4e1e1;
+    background: #f5f5f5;
   }
 
   &.variant-info {
-    background: #d0ebff;
+    background: #e3f2fd;
   }
 
   &.variant-warning {
-    background: #fff4e5;
+    background: #fff3e0;
+  }
+
+  &.variant-danger {
+    background: #ffebee;
   }
 
   &.variant-error {
-    background: #ffe5e5;
+    background: #ffebee;
   }
 }
 
