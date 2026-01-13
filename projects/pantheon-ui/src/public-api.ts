@@ -15,3 +15,4 @@ export * from './lib/pantheon-windows/window/window.module';
 export * from './lib/pantheon-windows/window/window.component';
 export * from './lib/pantheon-windows/SideActionPanel/side-action-panel.module';
 export * from './lib/pantheon-windows/SideActionPanel/side-action-panel.component';
+export * from './lib/utils/date-utils';

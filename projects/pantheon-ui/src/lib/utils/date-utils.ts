@@ -33,6 +33,3 @@ export const formatDateByType = (date: Date | string, dateType: DateFormatType =
       return formatDateToString(parsedDate, 'dd/MM/yyyy HH:mm');
   }
 }
-
-
-

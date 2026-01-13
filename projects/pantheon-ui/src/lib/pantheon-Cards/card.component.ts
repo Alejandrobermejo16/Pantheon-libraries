@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { formatDateByType, DateFormatType } from '../utils/date-utils';
 
 @Component({
   selector: 'pantehon-card',
@@ -9,6 +10,7 @@ export class CardComponent {
   @Input() data!: any;
   @Input() isCompleted = false;
   @Input() cardClass = '';
+  @Input() dateType: DateFormatType = 'month';
 
   get title(): string {
     return this.data?.title || '';
@@ -19,6 +21,10 @@ export class CardComponent {
   }
 
   get createdAt(): string {
-    return this.data?.createdAt || '';
+    return formatDateByType(this.data?.createdAt, this.dateType);
+  }
+
+  get iconClass(): string {
+    return this.iconClass;
   }
 }

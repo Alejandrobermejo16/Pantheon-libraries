@@ -20,6 +20,9 @@
       "pantheon-ui": [
         "dist/pantheon-ui",
         "./dist/pantheon-ui"
+      ],
+      "pantheon-core": [
+        "projects/core/src/public-api.ts"
       ]
     },
     "target": "ES2022",
