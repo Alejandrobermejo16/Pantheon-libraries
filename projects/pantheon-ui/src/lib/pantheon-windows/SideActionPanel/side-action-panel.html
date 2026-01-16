@@ -1,22 +1,17 @@
 <div class="overlay" *ngIf="open" (click)="close.emit()">
   <aside class="panel" (click)="$event.stopPropagation()">
 
-    <button
-      class="close-btn"
-      aria-label="Cerrar"
-      (click)="close.emit()">
+    <button class="close-btn" aria-label="Cerrar" (click)="close.emit()">
       ✕
     </button>
 
     <div class="actions">
-      <button *ngFor="let action of actions"
-              (click)="handleAction($event, action)"
-              [ngClass]="action.type || 'default'">
+      <button *ngFor="let action of actions" (click)="handleAction($event, action)"
+        [ngClass]="action.type || 'default'">
         <span *ngIf="action.icon">{{ action.icon }}</span>
         {{ action.label }}
       </button>
     </div>
-
+    <ng-content></ng-content>
   </aside>
-  <ng-content></ng-content>
 </div>
