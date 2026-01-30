@@ -8,6 +8,17 @@
   box-shadow: 0 10px 4px rgba(6, 37, 209, 0.1);
   transition: all 0.3s ease;
   cursor: grab;
+  position: relative;
+}
+
+.card-extras {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  z-index: 10;
 }
 
 .card-footer {

@@ -1,5 +1,8 @@
 <div class="container-card">
   <div class="card" [ngClass]="[cardClass, isCompleted ? 'is-completed' : '']">
+    <div class="card-extras">
+      <ng-content select="[extra]"></ng-content>
+    </div>
     <div class="date-container">
       <mat-icon>calendar_today</mat-icon>
       {{ createdAt }}
@@ -9,6 +12,5 @@
     <div class="card-footer">
       <ng-content select="[footer]"></ng-content>
     </div>
-    <ng-content select="[extra]"></ng-content>
   </div>
 </div>
