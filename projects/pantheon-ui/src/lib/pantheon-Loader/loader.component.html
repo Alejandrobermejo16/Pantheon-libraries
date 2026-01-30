@@ -1,7 +1,10 @@
-<div class="pl-backdrop" *ngIf="show">
+<div class="pl-backdrop" *ngIf="show" [class.pl-blur]="blur">
   <div class="pl-modal">
-    <div class="pl-spinner" role="status" aria-live="polite">
-      <span class="sr-only">{{ text || 'Cargando...' }}</span>
+    <div class="pl-spinner-container" [attr.data-variant]="variant" [attr.data-size]="size">
+      <div class="pl-spinner" role="status" aria-live="polite">
+        <span class="sr-only">{{ text || 'Cargando...' }}</span>
+      </div>
+      <div class="pl-pulse"></div>
     </div>
     <div class="pl-text" *ngIf="text">{{ text }}</div>
   </div>

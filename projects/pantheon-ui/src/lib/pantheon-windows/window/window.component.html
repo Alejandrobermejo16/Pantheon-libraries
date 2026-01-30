@@ -1,15 +1,47 @@
 <div class="modal-backdrop" *ngIf="show" (click)="close()"></div>
 
-<div *ngIf="show" class="container-window" [ngClass]="['size-' + size, 'variant-' + variant]">
-  <div class="window-header">
-    <mat-icon class="window-icon">{{ icon }}</mat-icon><ng-content select="[title]"></ng-content>
+<div *ngIf="show" class="modal-container" [ngClass]="['size-' + size, 'variant-' + variant]">
+  <!-- Handle (mobile indicator) -->
+  <div class="modal-handle-container">
+    <button class="handle-button" type="button">
+      <div class="handle"></div>
+    </button>
   </div>
-  <div class="window-body"><ng-content select="[body]"></ng-content>
+
+  <!-- Header -->
+  <div class="modal-header">
+    <div class="close-button" (click)="close()">
+      <mat-icon>close</mat-icon>
+    </div>
+    <h2 class="modal-title">
+      <ng-content select="[title]"></ng-content>
+    </h2>
+    <div class="more-button">
+      <mat-icon>{{ icon }}</mat-icon>
+    </div>
   </div>
-  <div class="window-footer">
-    <button mat-button (click)="close()">{{ titleBtnClose }}</button>
-    <button *ngIf="titleBtnNext && titleBtnNext.trim() !== ''" mat-button class="btn-next" (click)="onAction()">
+
+  <!-- Body -->
+  <div class="modal-body">
+    <ng-content select="[body]"></ng-content>
+  </div>
+
+  <!-- Footer -->
+  <div class="modal-footer" *ngIf="titleBtnClose || titleBtnNext">
+    <button class="cancel-button" (click)="close()" type="button">
+      <mat-icon>close</mat-icon>
+      {{ titleBtnClose }}
+    </button>
+    <button *ngIf="titleBtnNext && titleBtnNext.trim() !== ''" 
+            class="action-button" 
+            [ngClass]="'action-' + variant"
+            (click)="onAction()" 
+            type="button">
+      <mat-icon>check_circle</mat-icon>
       {{ titleBtnNext }}
     </button>
   </div>
+
+  <!-- Safe area (mobile) -->
+  <div class="safe-area"></div>
 </div>
