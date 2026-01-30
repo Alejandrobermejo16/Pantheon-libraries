@@ -16,7 +16,7 @@
   width: 100%;
   background: #111418;
   border-radius: 0.75rem 0.75rem 0 0;
-  overflow: hidden;
+  overflow: visible;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
@@ -332,5 +332,16 @@
   to {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Fix for mat-select and other overlays */
+::ng-deep {
+  .cdk-overlay-container {
+    z-index: 1002 !important;
+  }
+  
+  .cdk-overlay-pane {
+    z-index: 1002 !important;
   }
 }

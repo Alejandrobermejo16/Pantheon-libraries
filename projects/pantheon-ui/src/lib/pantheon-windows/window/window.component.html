@@ -28,15 +28,16 @@
 
   <!-- Footer -->
   <div class="modal-footer" *ngIf="titleBtnClose || titleBtnNext">
-    <button class="cancel-button" (click)="close()" type="button">
+    <button class="cancel-button" (click)="close()" type="button" [attr.aria-label]="titleBtnClose || 'Cerrar'">
       <mat-icon>close</mat-icon>
-      {{ titleBtnClose }}
+      <span *ngIf="titleBtnClose">{{ titleBtnClose }}</span>
     </button>
     <button *ngIf="titleBtnNext && titleBtnNext.trim() !== ''" 
             class="action-button" 
             [ngClass]="'action-' + variant"
             (click)="onAction()" 
-            type="button">
+            type="button"
+            [attr.aria-label]="titleBtnNext">
       <mat-icon>check_circle</mat-icon>
       {{ titleBtnNext }}
     </button>
