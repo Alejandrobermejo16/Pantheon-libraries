@@ -1,6 +1,6 @@
 {
   "name": "pantheon-libraries",
-  "version": "0.4.16",
+  "version": "0.4.17",
   "main": "dist/pantheon-ui/fesm2022/pantheon-ui.mjs",
   "types": "dist/pantheon-ui/index.d.ts",
   "exports": {
