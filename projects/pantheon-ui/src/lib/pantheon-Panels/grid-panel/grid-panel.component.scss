@@ -4,6 +4,7 @@
   padding: 16px;
   box-sizing: border-box;
   background: #f5f5f5;
+  overflow-x: auto; /* Scroll horizontal en móvil */
 }
 
 .grid-panel {
@@ -11,6 +12,18 @@
   grid-template-columns: repeat(4, 1fr);
   column-gap: 16px;
   row-gap: 16px;
+  min-width: fit-content; /* Evita que las columnas se compriman */
+  
+  /* Mobile: scroll horizontal */
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(4, minmax(280px, 1fr));
+    padding-bottom: 20px;
+  }
+  
+  /* Tablet: 2 columnas */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .grid-column {

@@ -1,6 +1,6 @@
 .header-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   background: #0645f1;
   padding: 12px;
   border-radius: 10px 10px 0 0;
@@ -8,6 +8,19 @@
   color: #333;
   text-align: center;
   gap: 10px;
+  overflow-x: auto; /* Scroll horizontal en móvil */
+  min-width: fit-content;
+  
+  /* Mobile: mismo ancho que grid-panel */
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(4, minmax(280px, 1fr));
+    padding-bottom: 12px;
+  }
+  
+  /* Tablet: 2 columnas */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .header-column {
