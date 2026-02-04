@@ -2,13 +2,13 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   background: #0645f1;
-  padding: 12px;
+  padding: 12px 16px;
   border-radius: 10px 10px 0 0;
   font-weight: 600;
   color: #333;
   text-align: center;
-  gap: 10px;
-  overflow-x: auto; /* Scroll horizontal en móvil */
+  gap: 16px;
+  overflow-x: auto;
   min-width: fit-content;
   
   /* Mobile: mismo ancho que grid-panel */
