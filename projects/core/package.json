@@ -1,6 +1,13 @@
 {
   "name": "@pantheon/core",
   "version": "0.3.0",
+  "description": "Core services and base components for Pantheon libraries",
+  "author": "Alejandro Bermejo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlejandroBermejo16/Pantheon-libraries.git"
+  },
   "peerDependencies": {
     "@angular/common": "^16.0.0",
     "@angular/core": "^16.0.0"
