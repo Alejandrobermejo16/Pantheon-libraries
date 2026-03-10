@@ -11,6 +11,7 @@ export class GridPanelComponent implements OnChanges {
   @Input() dataColumns: Array<{ name: string; items: any[] }> = [];
   @Input() gridTemplateColumns = 'repeat(4, 1fr)';
   @Input() itemTemplate!: TemplateRef<any>;
+  @Input() currentUserEmail: string = '';
   @Output() taskMoved = new EventEmitter<{ task: any; fromIndex: number; toIndex: number }>();
 
   crossOutEnabled = false;
@@ -29,10 +30,12 @@ export class GridPanelComponent implements OnChanges {
   onTaskDrop(event: CdkDragDrop<any[]>, targetColumnIndex: number) {
     const fromColumnIndex = Number(event.previousContainer.id.split('-')[1]);
 
-    // event.item.data contiene el cdkDragData — la tarea real arrastrada.
-    // previousIndex puede ser incorrecto si el DOM y el array están desincronizados,
-    // así que buscamos el índice real por _id.
     const movedTask = event.item.data;
+
+    // Seguridad: ignorar si la tarea no pertenece al usuario actual
+    if (this.currentUserEmail && movedTask?.userEmail !== this.currentUserEmail) {
+      return;
+    }
     const realIdx = event.previousContainer.data.findIndex(
       (t: any) => t._id === movedTask?._id
     );

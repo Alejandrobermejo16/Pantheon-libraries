@@ -9,7 +9,8 @@
     <div class="column-content">
       <div *ngFor="let item of column.items; trackBy: trackById"
            cdkDrag
-           [cdkDragData]="item">
+           [cdkDragData]="item"
+           [cdkDragDisabled]="currentUserEmail !== '' && item.userEmail !== currentUserEmail">
         <ng-container
           *ngTemplateOutlet="itemTemplate; context: { $implicit: item, columnIndex: columnIndex }">
         </ng-container>
