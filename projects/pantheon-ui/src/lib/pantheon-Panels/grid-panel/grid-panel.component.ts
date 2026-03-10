@@ -19,6 +19,10 @@ export class GridPanelComponent {
     return this.dataColumns.map((_, index) => `column-${index}`);
   }
 
+  trackById(_index: number, item: any): string {
+    return item?._id ?? item?._id?.$oid ?? _index;
+  }
+
   onTaskDrop(event: CdkDragDrop<any[]>, targetColumnIndex: number) {
     let movedTask;
 
