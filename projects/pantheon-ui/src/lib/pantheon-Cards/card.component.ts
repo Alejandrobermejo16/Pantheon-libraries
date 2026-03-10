@@ -1,10 +1,15 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, HostBinding } from '@angular/core';
 import { formatDateByType, DateFormatType } from '../utils/date-utils';
+import { CdkDrag } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'pantehon-card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss']
+  styleUrls: ['./card.component.scss'],
+  hostDirectives: [{
+    directive: CdkDrag,
+    inputs: ['cdkDragData']
+  }]
 })
 export class CardComponent {
   @Input() data!: any;
