@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, TemplateRef } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -6,7 +6,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
   templateUrl: './grid-panel.component.html',
   styleUrls: ['./grid-panel.component.scss']
 })
-export class GridPanelComponent {
+export class GridPanelComponent implements OnChanges {
 
   @Input() dataColumns: Array<{ name: string; items: any[] }> = [];
   @Input() gridTemplateColumns = 'repeat(4, 1fr)';
@@ -14,9 +14,12 @@ export class GridPanelComponent {
   @Output() taskMoved = new EventEmitter<{ task: any; fromIndex: number; toIndex: number }>();
 
   crossOutEnabled = false;
+  connectedDropLists: string[] = [];
 
-  get connectedDropLists(): string[] {
-    return this.dataColumns.map((_, index) => `column-${index}`);
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['dataColumns']) {
+      this.connectedDropLists = this.dataColumns.map((_, index) => `column-${index}`);
+    }
   }
 
   trackById(_index: number, item: any): string {
@@ -24,11 +27,11 @@ export class GridPanelComponent {
   }
 
   onTaskDrop(event: CdkDragDrop<any[]>, targetColumnIndex: number) {
-    let movedTask;
+    // Capturar la tarea por referencia ANTES de cualquier mutación de arrays
+    const movedTask = event.previousContainer.data[event.previousIndex];
 
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-      movedTask = event.container.data[event.currentIndex];
     } else {
       transferArrayItem(
         event.previousContainer.data,
@@ -36,7 +39,6 @@ export class GridPanelComponent {
         event.previousIndex,
         event.currentIndex
       );
-      movedTask = event.container.data[event.currentIndex];
     }
 
     this.taskMoved.emit({
