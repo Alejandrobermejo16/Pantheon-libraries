@@ -26,16 +26,14 @@ export class GridPanelComponent {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
       movedTask = event.container.data[event.currentIndex];
     } else {
-      movedTask = event.previousContainer.data[event.previousIndex];
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex
       );
+      movedTask = event.container.data[event.currentIndex];
     }
-
-    this.dataColumns = [...this.dataColumns];
 
     this.taskMoved.emit({
       task: movedTask,
