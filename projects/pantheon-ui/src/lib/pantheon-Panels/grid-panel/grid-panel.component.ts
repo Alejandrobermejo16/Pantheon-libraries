@@ -22,15 +22,10 @@ export class GridPanelComponent implements OnChanges {
     }
   }
 
-  trackById(_index: number, item: any): string {
-    return item?._id ?? item?._id?.$oid ?? _index;
-  }
-
   onTaskDrop(event: CdkDragDrop<any[]>, targetColumnIndex: number) {
     const fromColumnIndex = Number(event.previousContainer.id.split('-')[1]);
+    // Usar cdkDragData para identificar la tarea correcta
     const movedTask = event.item.data ?? event.previousContainer.data[event.previousIndex];
-
-    
     const realPreviousIndex = event.previousContainer.data.findIndex(
       (t: any) => t._id === movedTask?._id
     );
