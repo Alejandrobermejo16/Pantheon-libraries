@@ -28,23 +28,21 @@ export class GridPanelComponent implements OnChanges {
 
   onTaskDrop(event: CdkDragDrop<any[]>, targetColumnIndex: number) {
     const fromColumnIndex = Number(event.previousContainer.id.split('-')[1]);
-
-    // Usar cdkDragData para identificar la tarea real, ignorando previousIndex
-    // que puede ser incorrecto cuando el CDK pierde el tracking del DOM
     const movedTask = event.item.data ?? event.previousContainer.data[event.previousIndex];
 
+    
+    const realPreviousIndex = event.previousContainer.data.findIndex(
+      (t: any) => t._id === movedTask?._id
+    );
+    const fromIdx = realPreviousIndex >= 0 ? realPreviousIndex : event.previousIndex;
+
     if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      moveItemInArray(event.container.data, fromIdx, event.currentIndex);
     } else {
-      // Encontrar el índice real por _id para evitar el bug de previousIndex=0
-      const realPreviousIndex = event.previousContainer.data.findIndex(
-        (t: any) => t._id === movedTask._id
-      );
-      const idx = realPreviousIndex >= 0 ? realPreviousIndex : event.previousIndex;
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
-        idx,
+        fromIdx,
         event.currentIndex
       );
     }
