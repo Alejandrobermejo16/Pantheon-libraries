@@ -27,8 +27,17 @@ export class GridPanelComponent implements OnChanges {
   }
 
   onTaskDrop(event: CdkDragDrop<any[]>, targetColumnIndex: number) {
+    const fromColumnIndex = Number(event.previousContainer.id.split('-')[1]);
+
+    console.log('=== DRAG DROP ===');
+    console.log('fromColumn:', fromColumnIndex, '| toColumn:', targetColumnIndex);
+    console.log('previousIndex:', event.previousIndex, '| currentIndex:', event.currentIndex);
+    console.log('fromData antes:', event.previousContainer.data.map((t:any) => t.title));
+    console.log('toData antes:', event.container.data.map((t:any) => t.title));
+
     // Capturar la tarea por referencia ANTES de cualquier mutación de arrays
     const movedTask = event.previousContainer.data[event.previousIndex];
+    console.log('movedTask:', movedTask?.title, '| _id:', movedTask?._id);
 
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -41,9 +50,13 @@ export class GridPanelComponent implements OnChanges {
       );
     }
 
+    console.log('fromData después:', event.previousContainer.data.map((t:any) => t.title));
+    console.log('toData después:', event.container.data.map((t:any) => t.title));
+    console.log('=================');
+
     this.taskMoved.emit({
       task: movedTask,
-      fromIndex: Number(event.previousContainer.id.split('-')[1]),
+      fromIndex: fromColumnIndex,
       toIndex: targetColumnIndex
     });
   }
